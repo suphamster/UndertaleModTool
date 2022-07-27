@@ -671,6 +671,12 @@ public partial class Program : IScriptInterface
     /// <param name="fileToReplace">File path which should replace the embedded texture.</param>
     private void ReplaceTextureWithFile(string textureEntry, FileInfo fileToReplace)
     {
+    	int fileExtPos = textureEntry.LastIndexOf(".");
+		if (fileExtPos >= 0)
+		{
+			textureEntry = textureEntry.Substring(0, fileExtPos);
+		}
+        
         UndertaleEmbeddedTexture texture = Data.EmbeddedTextures.ByName(textureEntry);
 
         if (texture == null)
